@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import SimpleColorPicker from '../widgets/react-simplecolorpicker'
 
 class TodoForm extends Component {
 
@@ -29,6 +30,10 @@ class TodoForm extends Component {
     this.props.onSave(newTodo)
   }
 
+  _setColor(color) {
+    console.log(color)
+  }
+
   constructor(props, context) {
     super(props, context);
 
@@ -36,6 +41,8 @@ class TodoForm extends Component {
     this.state = {
       title: todo ? todo.title : ''
     }
+
+    this._setColor = this._setColor.bind(this)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -56,6 +63,7 @@ class TodoForm extends Component {
           onBlur={this._onBlur.bind(this)}
           onChange={this._onChange.bind(this)}
           onKeyDown={this._onKeyDown.bind(this)}/>
+        <SimpleColorPicker/>
       </div>
     );
   }
