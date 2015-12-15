@@ -15,6 +15,8 @@ import {
   moveTodo
 } from '../actions/todoActions'
 
+const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
+
 class _TodoLayout extends Component {
 
     _renderLoading() {
@@ -37,11 +39,18 @@ class _TodoLayout extends Component {
 
   render() {
     return (
-      <div className="todo-container">
-        {this._renderLoading.bind(this)()}
-        {this._renderError.bind(this)()}
-        <div className={this.props.isFetching ? 'disabled' : ''}>{this.props.children}</div>
-      </div>
+      <ReactCSSTransitionGroup
+      transitionName="example"
+      transitionAppear={true}
+      transitionAppearTimeout={5000}
+      transitionEnterTimeout={5000}
+      transitionLeaveTimeout={5000}>
+        <div className="todo-container">
+          {this._renderLoading.bind(this)()}
+          {this._renderError.bind(this)()}
+          <div className={this.props.isFetching ? 'disabled' : ''}>{this.props.children}</div>
+        </div> 
+      </ReactCSSTransitionGroup>
     );
   }
 }
