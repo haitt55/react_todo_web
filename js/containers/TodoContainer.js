@@ -39,18 +39,21 @@ class _TodoLayout extends Component {
 
   render() {
     return (
-      <ReactCSSTransitionGroup
-      transitionName="example"
-      transitionAppear={true}
-      transitionAppearTimeout={5000}
-      transitionEnterTimeout={5000}
-      transitionLeaveTimeout={5000}>
         <div className="todo-container">
           {this._renderLoading.bind(this)()}
           {this._renderError.bind(this)()}
-          <div className={this.props.isFetching ? 'disabled' : ''}>{this.props.children}</div>
+          <div className={this.props.isFetching ? 'disabled' : ''}>
+            <ReactCSSTransitionGroup
+            transitionName="example"
+            transitionAppear={true}
+            transitionAppearTimeout={5000}
+            transitionEnterTimeout={5000}
+            transitionLeaveTimeout={5000}>
+              {this.props.children}
+            </ReactCSSTransitionGroup>
+          </div>
         </div> 
-      </ReactCSSTransitionGroup>
+      
     );
   }
 }
@@ -90,10 +93,17 @@ class _TodoView extends Component {
 
   render() {
     return (
-      <div>
-        <Link to="/todos/">Go Back</Link>
-        <TodoDetail viewingTodo={this.props.viewingTodo}/>
-      </div>
+      <ReactCSSTransitionGroup
+        transitionName="example"
+        transitionAppear={true}
+        transitionAppearTimeout={5000}
+        transitionEnterTimeout={5000}
+        transitionLeaveTimeout={5000}>
+        <div>
+          <Link to="/todos">Go Back</Link>
+          <TodoDetail viewingTodo={this.props.viewingTodo}/>
+        </div>
+      </ReactCSSTransitionGroup>
     )
   }
 }
